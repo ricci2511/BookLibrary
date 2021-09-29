@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #ededed;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 30px 0;
+  justify-items: center;
+  justify-content: center;
+}
+
+.grid-book {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 6px;
+}
