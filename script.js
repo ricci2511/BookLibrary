@@ -9,14 +9,6 @@ function Book(title, author, numOfPages, isRead) {
     this.isRead = isRead;
 }
 
-Book.prototype.info = function () {
-    if (this.isRead) {
-        return `${this.title} by ${this.author}, ${this.numOfPages} pages, read`;
-    } else {
-        return `${this.title} by ${this.author}, ${this.numOfPages} pages, not read yet`;
-    }
-};
-
 function addBookToLibrary(title, author, pages, isRead) {
     let newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
@@ -24,15 +16,31 @@ function addBookToLibrary(title, author, pages, isRead) {
 
 function addBookToGrid(book) {
     const gridBook = document.createElement("div");
-    const bookInfo = document.createElement("div");
+    const title = document.createElement("div");
+    const author = document.createElement("div");
+    const pages = document.createElement("div");
+    const isRead = document.createElement("div");
 
-    bookInfo.textContent = book.info();
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = `${book.numOfPages} pages`;
+    isRead.textContent = (book.isRead) ? 'Read' : 'Not read yet';
 
-    gridBook.appendChild(bookInfo).className = "book-info";
+    gridBook.appendChild(title).className = "title";
+    gridBook.appendChild(author).className = "author";
+    gridBook.appendChild(pages).className = "pages";
+    gridBook.appendChild(isRead).className = "isRead";
     grid.appendChild(gridBook).className = "grid-book";
 }
 
 addBookToLibrary("The Hobbit", "J.R.R Tolkien", 295, false);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings, Return of the king", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
 addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
 
 myLibrary.forEach((book) => addBookToGrid(book));
