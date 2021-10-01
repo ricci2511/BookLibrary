@@ -1,4 +1,7 @@
-const grid = document.querySelector(".grid");
+const grid = document.querySelector('.grid');
+const addBookBtn = document.querySelector('#addBookBtn');
+const formAddBtn = document.querySelector('#formAddBtn');
+const formCancelBtn = document.querySelector('#formCancelBtn');
 let myLibrary = [];
 
 // Book class
@@ -9,38 +12,52 @@ function Book(title, author, numOfPages, isRead) {
     this.isRead = isRead;
 }
 
+addBookBtn.addEventListener('click', () => {
+    document.querySelector('.add-book-popup').classList.add('active');
+});
+
+formAddBtn.addEventListener('click', () => {
+
+});
+
+formCancelBtn.addEventListener('click', () => {
+    document.querySelector('.add-book-popup').classList.remove('active');
+});
+
 function addBookToLibrary(title, author, pages, isRead) {
     let newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
 }
 
 function addBookToGrid(book) {
-    const gridBook = document.createElement("div");
-    const title = document.createElement("div");
-    const author = document.createElement("div");
-    const pages = document.createElement("div");
-    const isRead = document.createElement("div");
+    const gridBook = document.createElement('div');
+    const title = document.createElement('div');
+    const author = document.createElement('div');
+    const pages = document.createElement('div');
+    const isRead = document.createElement('div');
 
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = `${book.numOfPages} pages`;
     isRead.textContent = (book.isRead) ? 'Read' : 'Not read yet';
 
-    gridBook.appendChild(title).className = "title";
-    gridBook.appendChild(author).className = "author";
-    gridBook.appendChild(pages).className = "pages";
-    gridBook.appendChild(isRead).className = "isRead";
-    grid.appendChild(gridBook).className = "grid-book";
+    gridBook.appendChild(title).className = 'title';
+    gridBook.appendChild(author).className = 'author';
+    gridBook.appendChild(pages).className = 'pages';
+    gridBook.appendChild(isRead).className = 'isRead';
+    grid.appendChild(gridBook).className = 'grid-book';
 }
 
-addBookToLibrary("The Hobbit", "J.R.R Tolkien", 295, false);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings, Return of the king", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
-addBookToLibrary("The Lord of the Rings", "J.R.R Tolkien", 500, true);
+/*
+addBookToLibrary('The Hobbit', 'J.R.R Tolkien', 295, false);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings, Return of the king', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+addBookToLibrary('The Lord of the Rings', 'J.R.R Tolkien', 500, true);
+*/
 
 myLibrary.forEach((book) => addBookToGrid(book));
