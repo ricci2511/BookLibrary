@@ -26,19 +26,6 @@ main {
   padding: 30px;
 }
 
-#addBookBtn {
-  background-color: rgb(111, 114, 255);
-  padding: 0.75em;
-  font-size: 1rem;
-  border-radius: 4px;
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-#addBookBtn:hover {
-  transform: scale(0.9);
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -54,7 +41,7 @@ main {
   background-color: #b0bec5;
   font-weight: 600;
   border-radius: 6px;
-  padding: 0.5rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -62,7 +49,7 @@ main {
 .author,
 .pages,
 .isRead {
-  padding: 0.2rem;
+  padding: 0.3rem;
 }
 
 .add-book-popup {
@@ -72,7 +59,8 @@ main {
   z-index: 1;
   transform: translate(-50%, -50%) scale(0);
   background-color: #ffffff;
-  border: 2px black solid;
+  border: 2px white solid;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 10px;
   font-size: 0.85em;
   padding: 1rem;
@@ -98,6 +86,51 @@ main {
 
 .form-input {
   padding: 0.5em;
+}
+
+/* BUTTONS */
+#addBookBtn {
+  background-color: rgb(111, 114, 255);
+  padding: 0.75em;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#addBookBtn:hover {
+  transform: scale(1.1);
+}
+
+.book-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.isRead-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 6px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background-color: rgb(248, 20, 20);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 6px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.isRead-btn:hover,
+.remove-btn:hover {
+  box-shadow: 0 0 5px 3px rgb(77, 77, 77);
 }
 
 .form-buttons {
