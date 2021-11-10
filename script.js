@@ -20,7 +20,15 @@ class Library {
     }
 
     addBook(book) {
-        this.books.push(book);
+        const invalidTitle = document.querySelector('.invalid-input');
+
+        if(this.existsInLibrary(book)) {
+            invalidTitle.classList.remove('hide');
+        } else {
+            UI.clearInputFields();
+            invalidTitle.classList.add('hide');
+            this.books.push(book);
+        }
     }
 
     getBook(title) {
@@ -36,6 +44,10 @@ class Library {
             element.parentElement.parentElement.remove(); // remove its parent which is grid-book
         }
     }
+
+    existsInLibrary(newBook) {
+        return this.books.some((book) => book.title === newBook.title);
+    }
 }
 
 // UI class
@@ -43,7 +55,7 @@ class UI {
     static clearInputFields() {
         document.querySelector('#title').value = '';
         document.querySelector('#author').value = '';
-        document.querySelector('#pages').value = '';
+        document.querySelector('#pages').value = 0;
         document.querySelector('#isRead').checked = false;
     }
 
@@ -69,7 +81,6 @@ function addBookToGrid(book) {
     const title = document.createElement('div');
     const author = document.createElement('div');
     const pages = document.createElement('div');
-    const isRead = document.querySelector('#isRead')
 
     const bookBtns = document.createElement('div');
     const isReadBtn = document.createElement('button');
@@ -107,11 +118,11 @@ function updateGrid() {
 function getInputBookData() {
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
-    let pages = document.querySelector('#pages').value;
+    let numOfPages = Number(document.querySelector('#pages').value);
     let isRead = document.querySelector('#isRead');
     isRead = isRead ? isRead.checked : false;
 
-    return new Book(title, author, pages, isRead);
+    return new Book(title, author, numOfPages, isRead);
 }
 
 // EVENTS
@@ -125,9 +136,13 @@ formCancelBtn.addEventListener('click', () => {
 
 formAddBtn.addEventListener('click', () => {
     let newBook = getInputBookData();
-    myLibrary.addBook(newBook);
-    updateGrid();
-    UI.clearInputFields();
+
+    if(newBook.title === '' || newBook.author === '' || newBook.numOfPages === 0) {
+        console.log('ENTER SOME INPUT PLEASE');
+    } else {
+        myLibrary.addBook(newBook);
+        updateGrid();
+    }
 });
 
 grid.addEventListener('click', (e) => UI.checkReadStatus(e.target));

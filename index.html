@@ -25,13 +25,14 @@
         <form class="add-book-form">
             <h4>Book data</h4>
             <div class="form-element">
-                <input type="text" class="form-input" id="title" placeholder="Title">
+                <input type="text" name="title" class="form-input" id="title" placeholder="Title">
+                <label for="title" class="invalid-input hide">A book with this title already exists.</label>
             </div>
             <div class="form-element">
                 <input type="text" class="form-input" id="author" placeholder="Author">
             </div>
             <div class="form-element">
-                <input type="text" class="form-input" id="pages" placeholder="Pages">
+                <input type="number" class="form-input" id="pages" placeholder="Pages" value="0">
             </div>
             <div class="form-element">
                 <input type="checkbox" id="isRead">

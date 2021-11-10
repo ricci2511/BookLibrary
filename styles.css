@@ -78,6 +78,8 @@ main {
 
 .form-element {
   padding: 0.25rem;
+  text-align: center;
+  max-width: 300px;
 }
 
 .form-element label {
@@ -86,6 +88,19 @@ main {
 
 .form-input {
   padding: 0.5em;
+}
+
+.form-element .invalid-input {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+  padding-top: 0.35em;
+  font-size: 0.5em;
+  color: red;
+}
+
+.hide {
+  display: none !important;
 }
 
 /* BUTTONS */
