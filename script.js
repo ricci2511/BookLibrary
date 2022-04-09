@@ -20,15 +20,12 @@ class Library {
     }
 
     addBook(book) {
-        const invalidTitle = document.querySelector('.invalid-input');
+        if (this.existsInLibrary(book)) {
+            return;
+        } 
 
-        if(this.existsInLibrary(book)) {
-            invalidTitle.classList.remove('hide');
-        } else {
-            UI.clearInputFields();
-            invalidTitle.classList.add('hide');
-            this.books.push(book);
-        }
+        UI.clearInputFields();
+        this.books.push(book);
     }
 
     getBook(title) {
@@ -41,7 +38,8 @@ class Library {
             const bookObj = this.getBook(bookTitle);
 
             this.books = this.books.filter((book) => book !== bookObj);
-            element.parentElement.parentElement.remove(); // remove its parent which is grid-book
+            // remove its parent which is grid-book
+            element.parentElement.parentElement.remove();
         }
     }
 
@@ -125,19 +123,29 @@ function getInputBookData() {
     return new Book(title, author, numOfPages, isRead);
 }
 
-// EVENTS
-addBookBtn.addEventListener('click', () => {
-    document.querySelector('.add-book-popup').classList.add('active');
-});
-
-formCancelBtn.addEventListener('click', () => {
+function removePopup() {
     document.querySelector('.add-book-popup').classList.remove('active');
-});
+    document.querySelector('.dark-overlay').classList.remove('active');
+}
+
+function showPopup() {
+    document.querySelector('.add-book-popup').classList.add('active');
+    document.querySelector('.dark-overlay').classList.add('active');
+
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.dark-overlay')) removePopup();
+    });
+}
+
+// EVENTS
+addBookBtn.addEventListener('click', () => showPopup());
+
+formCancelBtn.addEventListener('click', () => removePopup());
 
 formAddBtn.addEventListener('click', () => {
     let newBook = getInputBookData();
 
-    if(newBook.title === '' || newBook.author === '' || newBook.numOfPages === 0) {
+    if (newBook.title === '' || newBook.author === '' || newBook.numOfPages <= 0) {
         console.log('ENTER SOME INPUT PLEASE');
     } else {
         myLibrary.addBook(newBook);
